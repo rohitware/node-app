@@ -33,13 +33,23 @@ var fs = require("fs");
 //     console.log('File Information:', stats);
 // });
 
-const filePath = "output.txt";
-const newContent = " This data will append to file with dummy data\n";
+// const filePath = "output.txt";
+// const newContent = " This data will append to file with dummy data\n";
 
-fs.appendFile(filePath, newContent, (err) => {
-  if (err) {
-    console.error("Error appending to file:", err);
-  } else {
-    console.log("data has been appended to the file successfully!");
-  }
+// fs.appendFile(filePath, newContent, (err) => {
+//   if (err) {
+//     console.error("Error appending to file:", err);
+//   } else {
+//     console.log("data has been appended to the file successfully!");
+//   }
+// });
+
+const filePath = 'sample.txt'; 
+
+fs.unlink(filePath, (err) => {
+    if (err) {
+        console.error('Error deleting file:', err);
+    } else {
+        console.log('File has been deleted successfully!');
+    }
 });
