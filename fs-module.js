@@ -44,12 +44,24 @@ var fs = require("fs");
 //   }
 // });
 
-const filePath = 'sample.txt'; 
+// const filePath = 'sample.txt'; 
 
-fs.unlink(filePath, (err) => {
+// fs.unlink(filePath, (err) => {
+//     if (err) {
+//         console.error('Error deleting file:', err);
+//     } else {
+//         console.log('File has been deleted successfully!');
+//     }
+// });
+
+
+
+const dirPath = 'new_directory'; 
+
+fs.mkdir(dirPath, (err) => {
     if (err) {
-        console.error('Error deleting file:', err);
+        console.error('Error creating directory:', err);
     } else {
-        console.log('File has been deleted successfully!');
+        console.log('Directory created successfully!');
     }
 });
