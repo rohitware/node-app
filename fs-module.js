@@ -15,7 +15,7 @@ fs.writeFile("output.txt", data, (err) => {
     if (err) console.log(err);
     else {
         console.log("File written successfully\n");
-        console.log("The written file has the following contents:");
+        console.log("The written file contents:");
         console.log(fs.readFileSync("output.txt", "utf8"));
     }
 });
