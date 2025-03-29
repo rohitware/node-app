@@ -46,11 +46,11 @@ app.get("/students", async (request, response) => {
 // to post the resource
 // To create the resource
 app.post("/create", (request, response) => {
-  const { name, age, gread, city } = request.body;
+  const { name, age, grade, city } = request.body;
   Student.create({
     name,
     age,
-    gread,
+    grade,
     city,
   });
   response.send(`Successfully created Student `);
