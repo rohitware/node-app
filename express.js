@@ -56,15 +56,32 @@ app.post("/create", (request, response) => {
   response.send(`Successfully created Student `);
 });
 
-// to update the resource
-app.put("/update", (request, response) => {
-  response.send(`Student updated successfully ${request.url}`);
+// To update the resource
+app.put("/update", async (request, response) => {
+  const { name, age, grade, city } = request.body;
+  const studentDocument = await Student.findOneAndUpdate(
+    { age: age }, // Find the students by age = 20
+    { name: name, grade: grade, city: city }, // Update the fields
+    { new: true, upsert: true }
+  )
+  response.status(200).json(studentDocument);
 });
 
-// to delete the resource
-app.delete("/delete", (request, response) => {
-  response.send(`Student deleted successfully ${request.url}`);
+
+// To delete the resource using particular field 
+// http://localhost:8080/delete/19
+app.delete("/delete/:age", async (request, response) => {
+  const age = request.params.age;
+  const deletedStudent = await Student.findOneAndDelete({ age: age })
+  if (!deletedStudent) {
+    return response.status(404).json({
+      "status": 404,
+      "message": `Not Found, Student with age: ${age}`
+    })
+  }
+  return response.status(200).json(deletedStudent);
 });
+
 
 app.listen(8080, () => {
   console.log(`server started...`);
